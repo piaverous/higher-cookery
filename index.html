@@ -1,23 +1,39 @@
 <!DOCTYPE html>
 <html lang="en-us">
   <head>
+    <meta charset="utf-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <link rel="shortcut icon" href="TemplateData/favicon.ico">
+    <link rel="stylesheet" href="TemplateData/style.css">
+    <script src="TemplateData/UnityProgress.js"></script>
+    <script src="Build/UnityLoader.js"></script>
+    <script>
+      var gameInstance = UnityLoader.instantiate("gameContainer", "Build/HigherCookeryWeb.json", {onProgress: UnityProgress});
+    </script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.8.0/css/bulma.min.css">
-    <title>HigherCookery Download</title>
+    <title>HigherCookery</title>
   </head>
   <body>
     <section class="hero">
         <div class="hero-body">
           <div class="container">
             <h1 class="title">
-              Welcome to our HigherCookery Website !
+              Welcome to our HigherCookery !
             </h1>
             <h2 class="subtitle">
-              You can download the game using one of these links
+              Score saving feature to come soon...
             </h2>
           </div>
         </div>
       </section>
       <div class="container">
+        <div class="webgl-content">
+            <div id="gameContainer" style="width: 80%"></div>
+            <div class="footer">
+              <div class="webgl-logo"></div>
+              <div class="fullscreen" onclick="gameInstance.SetFullscreen(1)"></div>
+            </div>
+          </div>
           <div class="columns">
             <div class="column">
               <div class="card">
@@ -43,7 +59,7 @@
             </div>
           </div>
           <div class="notification">
-            Unfortunately, we do not support <i>Linux</i> yet, we apologize for this. We are (almost) actively working on a web version of the game.
+            Unfortunately, we do not support <i>Linux</i> yet, we apologize for this. We are <strong>absolutely not</strong> working on a downloadable version, please stick to the web one !
           </div>
       </div>
   </body>
