@@ -3,7 +3,6 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <title>Unity WebGL Player | pooa-overcooked</title>
     <link rel="shortcut icon" href="TemplateData/favicon.ico">
     <link rel="stylesheet" href="TemplateData/style.css">
     <script src="TemplateData/UnityProgress.js"></script>
@@ -11,15 +10,94 @@
     <script>
       var gameInstance = UnityLoader.instantiate("gameContainer", "Build/higher-cookery-game.json", {onProgress: UnityProgress});
     </script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.8.0/css/bulma.min.css">
+    <title>HigherCookery</title>
+    <style>
+      .card {
+        margin-bottom: 1rem;
+        display: flex;
+        flex-direction: column;
+      }
+    </style>
   </head>
   <body>
-    <div class="webgl-content">
-      <div id="gameContainer" style="width: 960px; height: 600px"></div>
-      <div class="footer">
-        <div class="webgl-logo"></div>
-        <div class="fullscreen" onclick="gameInstance.SetFullscreen(1)"></div>
-        <div class="title">pooa-overcooked</div>
+  <section class="hero">
+      <div class="hero-body">
+        <div class="container">
+          <h1 class="title">
+            Welcome to our HigherCookery !
+          </h1>
+          <h2 class="subtitle">
+            Score saving feature to come soon...
+          </h2>
+        </div>
       </div>
-    </div>
+    </section>
+    <div class="container">
+        <div class="card" style="width: 100%; height: 650px;">
+          <div class="card-image" style="width: 100%; height: 650px;">
+            <div class="webgl-content">
+              <div id="gameContainer" style="width: 960px; height: 600px"></div>
+            </div>
+          </div>
+          <div class="card-content">
+            <div class="button" onclick="gameInstance.SetFullscreen(1)">
+              Fullscreen mode
+            </div>
+          </div>
+        </div>
+        <div class="columns">
+          <div class="column">
+            <div class="card">
+                <div class="card-content">
+                  <div class="content">
+                    <a href="https://gitlab.com/piaverous/pooa-overcooked/-/archive/master/pooa-overcooked-master.zip?path=Game%2FMac" class="title">
+                      MacOS Download
+                    </a>
+                  </div>
+                </div>
+            </div>
+          </div>
+          <div class="column">
+            <div class="card">
+                <div class="card-content">
+                  <div class="content">
+                    <a href="https://gitlab.com/piaverous/pooa-overcooked/-/archive/master/pooa-overcooked-master.zip?path=Game%2FWindows" class="title">
+                      Windows Download
+                    </a>
+                  </div>
+                </div>
+            </div>
+          </div>
+        </div>
+        <div class="notification">
+          Unfortunately, we do not support <i>Linux</i> yet, we apologize for this. 
+          We are <strong>absolutely not</strong> working on a downloadable version for Linux, please stick to the web one !
+        </div>
+      </div>
+
+      <footer class="footer">
+        <div class="content has-text-centered">
+            <p>
+              Game built by 
+              <strong><a href="https://gitlab.com/piaverous">
+                Pierre Averous
+              </a></strong>, 
+              <strong><a href="https://gitlab.com/gouta">
+                Arthur Goutallier
+              </a></strong> and 
+              <strong><a href="https://gitlab.com/nico_ajax">
+                Nicolas Topuz
+              </a></strong> 
+              using <strong>Unity</strong>.
+            </p>
+            <p>
+              Special thanks to all out beta-testers listed 
+              <strong><a href="https://gitlab.com/piaverous/pooa-overcooked#remerciements">
+                here
+              </a></strong> !
+            </p>
+        </div>
+      </footer>
   </body>
 </html>
