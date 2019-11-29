@@ -51,9 +51,30 @@
       </section>
       <div class="container">
         <div class="card" style="width: 100%; height: 650px;">
-          <div class="card-image" style="width: 100%; height: 650px;">
-            <div class="webgl-content">
-              <div id="gameContainer" style="width: 960px; height: 600px"></div>
+          <div style="display: flex;">
+            <div class="card-image" style="width: 960px; height: 650px;">
+              <div class="webgl-content">
+                <div id="gameContainer" style="width: 960px; height: 600px"></div>
+              </div>
+            </div>
+            <div>
+              <div class="tabs is-fullwidth">
+                  <ul>
+                    <li class="is-toggle-rounded" id="lvl1"><a onclick="fillLeaderboard(1)">Level 1</a></li>
+                    <li class="is-toggle" id="lvl2"><a onclick="fillLeaderboard(2)">Level 2</a></li>
+                    <li class="is-toggle-rounded" id="lvl3"><a onclick="fillLeaderboard(3)">Level 3</a></li>
+                  </ul>
+                </div>
+                <table class="table" style="width: 100%">
+                  <thead>
+                    <tr>
+                      <th>User</th>
+                      <th>Score</th>
+                    </tr>
+                  </thead>
+                  <tbody id="leaderboard">
+                  </tbody>
+                </table>
             </div>
           </div>
           <div class="card-content">
@@ -61,25 +82,6 @@
               Fullscreen mode
             </div>
           </div>
-        </div>
-        <div class="container">
-          <div class="tabs is-fullwidth">
-            <ul>
-              <li class="is-toggle-rounded" id="lvl1"><a onclick="fillLeaderboard(1)">Level 1</a></li>
-              <li class="is-toggle" id="lvl2"><a onclick="fillLeaderboard(2)">Level 2</a></li>
-              <li class="is-toggle-rounded" id="lvl3"><a onclick="fillLeaderboard(3)">Level 3</a></li>
-            </ul>
-          </div>
-          <table class="table" style="width: 100%">
-            <thead>
-              <tr>
-                <th>User</th>
-                <th>Score</th>
-              </tr>
-            </thead>
-            <tbody id="leaderboard">
-            </tbody>
-          </table>
         </div>
         <div class="columns">
           <div class="column">
