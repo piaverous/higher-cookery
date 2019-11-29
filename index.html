@@ -20,6 +20,7 @@
       }
     </style>
     <script>
+      const API_KEY = "xhiZo4MZIt4YwNikNikNikkgjRQvQkPxtEnBCSuBz"
       async function httpGet(url)
       {
         var myHeaders = new Headers();
@@ -148,24 +149,21 @@
           });
         });
       });
+      console.log("Salut toi")
     </script>
 </body>
 <script>
   async function fillLeaderboard(level) {
     const tab = document.querySelector("#lvl"+level)
     for(let i=1; i<4; i++) {
-      console.log("#lvl"+i)
       let t = document.querySelector("#lvl"+i)
       t.classList.remove("is-active"); 
     }
     tab.classList.add("is-active")
     
     const table = document.querySelector("#leaderboard");
-    console.log({table})
 
     const response = await httpGet("https://higher-cookery.herokuapp.com/leaderboard/"+level)
-    console.log(response)
-    console.log(response.leaderboard)
     const leaderboard = response.leaderboard;
 
     while (table.firstChild) {
