@@ -8,7 +8,7 @@
     <script src="TemplateData/UnityProgress.js"></script>
     <script src="Build/UnityLoader.js"></script>
     <script>
-      var gameInstance = UnityLoader.instantiate("gameContainer", "Build/higher-cookery-game.json", {onProgress: UnityProgress});
+      var gameInstance = UnityLoader.instantiate("gameContainer", "Build/HigherCookeryWeb.json", {onProgress: UnityProgress});
     </script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.8.0/css/bulma.min.css">
     <title>HigherCookery</title>
@@ -19,25 +19,62 @@
         flex-direction: column;
       }
     </style>
+    <script>
+      async function httpGet(url)
+      {
+        var myHeaders = new Headers();
+
+        var myInit = { method: 'GET',
+                      headers: myHeaders,
+                      mode: 'cors',
+                      cache: 'default' };
+
+        return await fetch(url,myInit)
+          .then(function(response) {
+            return response.json();
+          });
+      }
+    </script>
   </head>
   <body>
-  <section class="hero">
-      <div class="hero-body">
-        <div class="container">
-          <h1 class="title">
-            Welcome to our HigherCookery !
-          </h1>
-          <h2 class="subtitle">
-            Score saving feature to come soon...
-          </h2>
+    <section class="hero">
+        <div class="hero-body">
+          <div class="container">
+            <h1 class="title">
+              Welcome to our HigherCookery !
+            </h1>
+            <h2 class="subtitle">
+              Score saving feature to come soon...
+            </h2>
+          </div>
         </div>
-      </div>
-    </section>
-    <div class="container">
+      </section>
+      <div class="container">
         <div class="card" style="width: 100%; height: 650px;">
-          <div class="card-image" style="width: 100%; height: 650px;">
-            <div class="webgl-content">
-              <div id="gameContainer" style="width: 960px; height: 600px"></div>
+          <div style="display: flex;">
+            <div class="card-image" style="width: 960px; height: 650px;">
+              <div class="webgl-content">
+                <div id="gameContainer" style="width: 960px; height: 600px"></div>
+              </div>
+            </div>
+            <div>
+              <div class="tabs is-fullwidth">
+                  <ul>
+                    <li class="is-toggle-rounded" id="lvl1"><a onclick="fillLeaderboard(1)">Level 1</a></li>
+                    <li class="is-toggle" id="lvl2"><a onclick="fillLeaderboard(2)">Level 2</a></li>
+                    <li class="is-toggle-rounded" id="lvl3"><a onclick="fillLeaderboard(3)">Level 3</a></li>
+                  </ul>
+                </div>
+                <table class="table" style="width: 100%">
+                  <thead>
+                    <tr>
+                      <th>User</th>
+                      <th>Score</th>
+                    </tr>
+                  </thead>
+                  <tbody id="leaderboard">
+                  </tbody>
+                </table>
             </div>
           </div>
           <div class="card-content">
@@ -100,4 +137,40 @@
         </div>
       </footer>
   </body>
+  <script>
+    async function fillLeaderboard(level) {
+      const tab = document.querySelector("#lvl"+level)
+      for(let i=1; i<4; i++) {
+        console.log("#lvl"+i)
+        let t = document.querySelector("#lvl"+i)
+        t.classList.remove("is-active"); 
+      }
+      tab.classList.add("is-active")
+      
+      const table = document.querySelector("#leaderboard");
+      console.log({table})
+
+      const response = await httpGet("http://localhost:3000/leaderboard/"+level)
+      console.log(response)
+      console.log(response.leaderboard)
+      const leaderboard = response.leaderboard;
+
+      while (table.firstChild) {
+        table.removeChild(table.firstChild);
+      }
+      for (var i = 0; i<leaderboard.length; i++) { 
+        var tr = document.createElement('tr'); 
+        table.appendChild(tr); 
+
+        var tdElement = document.createElement('td');
+        tdElement.innerHTML = leaderboard[i].username || 'Lotus';
+        tr.appendChild(tdElement); 
+        
+        var tdElement2 = document.createElement('td');
+        tdElement2.innerHTML = leaderboard[i].score || '-1000';
+        tr.appendChild(tdElement2); 
+      }
+    }
+    fillLeaderboard(1);
+  </script>
 </html>
