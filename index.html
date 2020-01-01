@@ -3,185 +3,28 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <link rel="shortcut icon" href="TemplateData/favicon.ico">
-    <link rel="stylesheet" href="TemplateData/style.css">
-    <script src="TemplateData/UnityProgress.js"></script>
-    <script src="Build/UnityLoader.js"></script>
-    <script>
-      var gameInstance = UnityLoader.instantiate("gameContainer", "Build/higher-cookery-game2.json", {onProgress: UnityProgress});
-    </script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.8.0/css/bulma.min.css">
-    <title>HigherCookery</title>
-    <style>
-      .card {
-        margin-bottom: 1rem;
-        display: flex;
-        flex-direction: column;
-      }
-    </style>
-    <script>
-      const API_KEY = "xhiZo4MZIt4YwNikNikNikkgjRQvQkPxtEnBCSuBz"
-      async function httpGet(url)
-      {
-        var myHeaders = new Headers();
+    <link rel="stylesheet" href="style.css">
+    <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
 
-        var myInit = { method: 'GET',
-                      headers: myHeaders,
-                      mode: 'cors',
-                      cache: 'default' };
-
-        return await fetch(url,myInit)
-          .then(function(response) {
-            return response.json();
-          });
-      }
-    </script>
+    <title>Higher Cookery</title>
   </head>
   <body>
+    <div id="home">
+      <div>
+        <img class="image is-128x128" src="./assets/images/LogoPrimary.png" id="spin-logo" alt="Logo"/>
+        <div class="title">Higher Cookery</div>
+        <div class="subtitle">
+          The <strong>Higher Cookery</strong> game has been moved somewhere else. Link below :)
+        </div>
 
-    <section class="hero">
-      <div class="hero-body">
-        <div class="container">
-          <h1 class="title">
-            Welcome to our HigherCookery !
-          </h1>
-          <h2 class="subtitle">
-            Compare your score with your friends ;)
-          </h2>
-        </div>
-      </div>
-    </section>
-    <div class="container">
-      <div class="card" style="height: 650px;">
-        <div class="webgl-content" style="height: 600px;">
-          <div id="gameContainer" style="width: 960px; height: 600px"></div>
-        </div>
-        <div class="card-content">
-          <div class="button" onclick="gameInstance.SetFullscreen(1)">
-            Fullscreen mode
-          </div>
-        </div>
-      </div>
-      <div class="card">
-        <div class="notification is-warning">
-          <button class="delete"></button>
-          We apologize, you will have to refresh to see your latest scores show up...
-        </div>
-        <div class="tabs is-fullwidth">
-          <ul>
-            <li id="lvl1"><a onclick="fillLeaderboard(1)">Level 1</a></li>
-            <li id="lvl2"><a onclick="fillLeaderboard(2)">Level 2</a></li>
-            <li id="lvl3"><a onclick="fillLeaderboard(3)">Level 3</a></li>
-          </ul>
-        </div>
-        <div class="card-content" style="max-height: 300px; overflow: scroll;">
-          <table class="table is-bordered is-striped is-fullwidth">
-            <thead>
-              <tr>
-                <th>User</th>
-                <th>Score</th>
-              </tr>
-            </thead>
-            <tbody id="leaderboard">
-            </tbody>
-          </table>
-        </div>
-      </div>
-      <div class="columns">
-        <div class="column">
-          <div class="card">
-              <div class="card-content">
-                <div class="content">
-                  <a href="https://gitlab.com/piaverous/pooa-overcooked/-/archive/master/pooa-overcooked-master.zip?path=Game%2FMac" class="title">
-                    MacOS Download
-                  </a>
-                </div>
-              </div>
-          </div>
-        </div>
-        <div class="column">
-          <div class="card">
-              <div class="card-content">
-                <div class="content">
-                  <a href="https://gitlab.com/piaverous/pooa-overcooked/-/archive/master/pooa-overcooked-master.zip?path=Game%2FWindows" class="title">
-                    Windows Download
-                  </a>
-                </div>
-              </div>
-          </div>
-        </div>
-      </div>
-      <div class="notification">
-        Unfortunately, we do not support <i>Linux</i> yet, we apologize for this. 
-        We are <strong>absolutely not</strong> working on a downloadable version for Linux, please stick to the web one !
-      </div>
+        <a class="button" href="https://piaverous.gitlab.io/#/games/highercookery">
+          <span>Continue to Game</span>
+          <span class="icon is-small">
+            <i class="far fa-arrow-alt-circle-right" ></i>
+          </span>
+        </a>
+      </div>  
     </div>
-
-    <footer class="footer">
-      <div class="content has-text-centered">
-          <p>
-            Game built by 
-            <strong><a href="https://gitlab.com/piaverous">
-              Pierre Averous
-            </a></strong>, 
-            <strong><a href="https://gitlab.com/gouta">
-              Arthur Goutallier
-            </a></strong> and 
-            <strong><a href="https://gitlab.com/nico_ajax">
-              Nicolas Topuz
-            </a></strong> 
-            using <strong>Unity</strong>.
-          </p>
-          <p>
-            Special thanks to all out beta-testers listed 
-            <strong><a href="https://gitlab.com/piaverous/pooa-overcooked#remerciements">
-              here
-            </a></strong> !
-          </p>
-      </div>
-    </footer>
-    <script>
-      document.addEventListener('DOMContentLoaded', () => {
-        (document.querySelectorAll('.notification .delete') || []).forEach(($delete) => {
-          $notification = $delete.parentNode;
-          $delete.addEventListener('click', () => {
-            $notification.parentNode.removeChild($notification);
-          });
-        });
-      });
-      console.log("Salut toi")
-    </script>
-</body>
-<script>
-  async function fillLeaderboard(level) {
-    const tab = document.querySelector("#lvl"+level)
-    for(let i=1; i<4; i++) {
-      let t = document.querySelector("#lvl"+i)
-      t.classList.remove("is-active"); 
-    }
-    tab.classList.add("is-active")
-    
-    const table = document.querySelector("#leaderboard");
-
-    const response = await httpGet("https://higher-cookery.herokuapp.com/leaderboard/"+level)
-    const leaderboard = response.leaderboard;
-
-    while (table.firstChild) {
-      table.removeChild(table.firstChild);
-    }
-    for (var i = 0; i<leaderboard.length; i++) { 
-      var tr = document.createElement('tr'); 
-      table.appendChild(tr); 
-
-      var tdElement = document.createElement('td');
-      tdElement.innerHTML = leaderboard[i].username || 'Lotus';
-      tr.appendChild(tdElement); 
-      
-      var tdElement2 = document.createElement('td');
-      tdElement2.innerHTML = leaderboard[i].score || '-1000';
-      tr.appendChild(tdElement2); 
-    }
-  }
-  fillLeaderboard(1);
-</script>
+  </body>
 </html>
